@@ -1,0 +1,56 @@
+
+plugin.tx_isanblog_blog {
+	view {
+		templateRootPaths.0 = {$plugin.tx_isanblog_blog.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_isanblog_blog.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_isanblog_blog.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_isanblog_blog.persistence.storagePid}
+	}
+}
+
+plugin.tx_isanblog_author {
+	view {
+		templateRootPaths.0 = {$plugin.tx_isanblog_author.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_isanblog_author.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_isanblog_author.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_isanblog_author.persistence.storagePid}
+	}
+}
+
+plugin.tx_isanblog._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-isan-blog table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-isan-blog table th {
+		font-weight:bold;
+	}
+
+	.tx-isan-blog table td {
+		vertical-align:top;
+	}
+
+	.typo3-messages .message-error {
+		color:red;
+	}
+
+	.typo3-messages .message-ok {
+		color:green;
+	}
+
+)

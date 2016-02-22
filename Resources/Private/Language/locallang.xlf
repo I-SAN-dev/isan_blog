@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-22T20:24:06Z" product-name="isan_blog">
+		<header/>
+		<body>
+			<trans-unit id="tx_isanblog_domain_model_blogpost">
+				<source>Blog Post</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_blogpost.author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_blogpost.tags">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_author.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_author.abstract">
+				<source>Abstract</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_author.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_tag">
+				<source>Tag</source>
+			</trans-unit>
+			<trans-unit id="tx_isanblog_domain_model_tag.name">
+				<source>Name</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,27 @@
+
+<table class="tx-isan-blog" >
+	<tr>
+		<td>
+			<f:translate key="tx_isanblog_domain_model_blogpost.title" />
+		</td>
+		<td>
+		{blogPost.title}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_isanblog_domain_model_blogpost.abstract" />
+		</td>
+		<td>
+		{blogPost.abstract}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_isanblog_domain_model_blogpost.crdate" />
+		</td>
+		<td>
+		{blogPost.crdate -> f:format.date()}
+		</td>
+	</tr>
+</table>

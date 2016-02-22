@@ -1,0 +1,15 @@
+
+config.tx_extbase{
+    persistence{
+        classes{
+
+            Isan\IsanBlog\Domain\Model\BlogPost {
+                mapping {
+                    tableName = pages
+                    recordType = Tx_IsanBlog_BlogPost
+                }
+            }
+            
+    	}
+    }
+}

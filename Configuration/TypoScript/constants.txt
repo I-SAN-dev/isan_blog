@@ -1,0 +1,30 @@
+
+plugin.tx_isanblog_blog {
+	view {
+		# cat=plugin.tx_isanblog_blog/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:isan_blog/Resources/Private/Templates/
+		# cat=plugin.tx_isanblog_blog/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:isan_blog/Resources/Private/Partials/
+		# cat=plugin.tx_isanblog_blog/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:isan_blog/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_isanblog_blog//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
+
+plugin.tx_isanblog_author {
+	view {
+		# cat=plugin.tx_isanblog_author/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:isan_blog/Resources/Private/Templates/
+		# cat=plugin.tx_isanblog_author/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:isan_blog/Resources/Private/Partials/
+		# cat=plugin.tx_isanblog_author/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:isan_blog/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_isanblog_author//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
