@@ -41,10 +41,10 @@ $tmp_isan_blog_columns = array(
 			'renderType' => 'selectMultipleSideBySide',
 			'foreign_table' => 'tx_isanblog_domain_model_author',
 			'MM' => 'tx_isanblog_blogpost_author_mm',
-			'size' => 10,
+			'size' => 3,
 			'autoSizeMax' => 30,
 			'maxitems' => 9999,
-			'multiple' => 0,
+			'multiple' => 1,
 			'wizards' => array(
 				'_PADDING' => 1,
 				'_VERTICAL' => 1,
@@ -85,7 +85,7 @@ $tmp_isan_blog_columns = array(
 			'size' => 10,
 			'autoSizeMax' => 30,
 			'maxitems' => 9999,
-			'multiple' => 0,
+			'multiple' => 1,
 			'wizards' => array(
 				'_PADDING' => 1,
 				'_VERTICAL' => 1,
@@ -168,10 +168,53 @@ if(isset($GLOBALS['TCA']['pages']['types']['1']['showitem'])) {
 } else {
 	$GLOBALS['TCA']['pages']['types'][$blogDoktype]['showitem'] = '';
 }
-$GLOBALS['TCA']['pages']['types'][$blogDoktype]['showitem'] .= ',--div--;LLL:EXT:isan_blog/Resources/Private/Language/locallang_db.xlf:tx_isanblog_domain_model_blogpost,';
-$GLOBALS['TCA']['pages']['types'][$blogDoktype]['showitem'] .= 'author, tags';
 
-$GLOBALS['TCA']['pages']['columns'][$GLOBALS['TCA']['pages']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:isan_blog/Resources/Private/Language/locallang_db.xlf:pages.tx_extbase_type.Tx_IsanBlog_BlogPost','Tx_IsanBlog_BlogPost');
+//--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.standard;standard,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.title;title, doktype,
+//				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.visibility;visibility,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access;access,
+//				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.abstract;abstract,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;editorial,
+//				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.layout;layout, tx_themes_icon,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.replace;replace,
+//				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.behaviour,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.links;links,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.caching;caching,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.language;language,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.miscellaneous;miscellaneous,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.module;module,
+//				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.media;media,
+//					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.config;config,
+//				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended, --div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category, categories
+
+
+// $GLOBALS['TCA']['pages']['types'][$blogDoktype]['showitem'] .= ',--div--;LLL:EXT:isan_blog/Resources/Private/Language/locallang_db.xlf:tx_isanblog_domain_model_blogpost,';
+// $GLOBALS['TCA']['pages']['types'][$blogDoktype]['showitem'] .= 'author, tags';
+
+
+$GLOBALS['TCA']['pages']['types'][$blogDoktype]['showitem'] = '
+--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.standard;standard,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.title;title, author,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.abstract;abstract,
+				--div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category, categories, tags,
+				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.media;media,
+				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.layout;layout,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.replace;replace,
+				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.visibility;visibility,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access;access,
+				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+';
+
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 	'',
