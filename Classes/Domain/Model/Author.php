@@ -46,7 +46,22 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $link = '';
-    
+
+    /**
+     * link
+     *
+     * @var string
+     */
+    protected $googlepluslink = '';
+
+    /**
+     * link
+     *
+     * @var string
+     */
+    protected $facebooklink = '';
+
+
     /**
      * name
      *
@@ -172,6 +187,48 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setLink($link)
     {
         $this->link = $link;
+    }
+
+    /**
+     * Returns the googlepluslink
+     *
+     * @return string $googlepluslink
+     */
+    public function getGooglepluslink()
+    {
+        return $this->googlepluslink;
+    }
+
+    /**
+     * Sets the googlepluslink
+     *
+     * @param string $googlepluslink
+     * @return void
+     */
+    public function setGooglepluslink($googlepluslink)
+    {
+        $this->googlepluslink = $googlepluslink;
+    }
+
+    /**
+     * Returns the facebooklink
+     *
+     * @return string $facebooklink
+     */
+    public function getFacebooklink()
+    {
+        return $this->facebooklink;
+    }
+
+    /**
+     * Sets the facebooklink
+     *
+     * @param string $facebooklink
+     * @return void
+     */
+    public function setFacebooklink($facebooklink)
+    {
+        $this->googlepluslink = $facebooklink;
     }
 
 }

@@ -26,7 +26,9 @@ return array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, abstract, image',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, abstract;;;richtext:rte_transform[mode=ts_links], image, '),
+		'1' => array('showitem' => 'name, abstract;;;richtext:rte_transform[mode=ts_links], image,
+		 							--div--;Links, mail, link, googlepluslink, facebooklink,
+		 							--div--;Settings, sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -91,6 +93,39 @@ return array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim,required'
+			),
+		),
+		'link' => array(
+			'exclude' => 0,
+			'label' => 'URL Homepage',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'mail' => array(
+			'label' => 'E-Mail',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim, email'
+			),
+		),
+		'googlepluslink' => array(
+			'label' => 'Google+ Profile Link',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'facebooklink' => array(
+			'label' => 'Facebook Profile Link',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			),
 		),
 		'abstract' => array(

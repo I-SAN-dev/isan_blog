@@ -17,6 +17,10 @@ CREATE TABLE tx_isanblog_domain_model_author (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
+	mail varchar(255) DEFAULT '' NOT NULL,
+	link varchar(255) DEFAULT '' NOT NULL,
+	googlepluslink varchar(255) DEFAULT '' NOT NULL,
+	facebookluslink varchar(255) DEFAULT '' NOT NULL,
 	abstract text NOT NULL,
 	image int(11) unsigned NOT NULL default '0',
 
