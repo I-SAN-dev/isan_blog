@@ -24,7 +24,7 @@ namespace Isan\IsanBlog\ViewHelpers;
  * </f:for>
  * </code>
  * <output>
- * Loop over every category of the given file
+ * Loop over every author of the given blogpost
  * </output>
  *
  *
