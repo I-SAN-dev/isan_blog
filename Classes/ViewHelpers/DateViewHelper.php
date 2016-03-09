@@ -22,7 +22,7 @@ namespace Isan\IsanBlog\ViewHelpers;
  * <blog:date format="d.m.Y H:i" />
  * </code>
  * <output>
- * Loop over every category of the given file
+ * Display a blog date
  * </output>
  *
  *
