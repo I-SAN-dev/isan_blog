@@ -44,7 +44,7 @@ class AuthorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * Find by given page.
      *
      * @param int $pid
-     * @return Isan\IsanBlog\Domain\Model\author
+     * @return Isan\IsanBlog\Domain\Model\Author
      */
     public function findByPage($pid) {
         $query = $this->createQuery();
