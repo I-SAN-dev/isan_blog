@@ -59,7 +59,6 @@ class AuthorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ORDER BY tx_isanblog_blogpost_author_mm.sorting ASC
         ');
         return $query->execute();
-
     }
 
 }
