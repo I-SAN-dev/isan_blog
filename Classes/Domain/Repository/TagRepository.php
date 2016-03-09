@@ -33,5 +33,24 @@ namespace Isan\IsanBlog\Domain\Repository;
 class TagRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
-    
+    /**
+     * Find by given page.
+     *
+     * @param int $pid
+     * @return Isan\IsanBlog\Domain\Model\Tag
+     */
+    public function findByPage($pid) {
+        $query = $this->createQuery();
+        $query->statement('
+            SELECT DISTINCT *
+            FROM tx_isanblog_domain_model_tag
+            INNER JOIN tx_isanblog_blogpost_tag_mm ON tx_isanblog_domain_model_tag.uid=tx_isanblog_blogpost_tag_mm.uid_foreign
+            WHERE tx_isanblog_blogpost_tag_mm.uid_local = '. $pid .'
+            AND tx_isanblog_domain_model_tag.hidden = 0
+            AND tx_isanblog_domain_model_tag.deleted = 0
+            GROUP BY tx_isanblog_domain_model_tag.uid
+            ORDER BY tx_isanblog_blogpost_tag_mm.sorting ASC
+        ');
+        return $query->execute();
+    }
 }
