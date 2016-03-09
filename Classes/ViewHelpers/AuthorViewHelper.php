@@ -14,7 +14,7 @@ namespace Isan\IsanBlog\ViewHelpers;
      * Public License for more details.                                       *
      *                                                                        */
 /**
- * This ViewHelper returns the createdate, or if set, the publish date of a page
+ * This ViewHelper returns authors of a page
  *
  * = Examples =
  *
