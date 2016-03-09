@@ -40,4 +40,26 @@ class AuthorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
     );
 
+    /**
+     * Find by given page.
+     *
+     * @param int $pid
+     * @return Isan\IsanBlog\Domain\Model\author
+     */
+    public function findByPage($pid) {
+        $query = $this->createQuery();
+        $query->statement('
+            SELECT DISTINCT *
+            FROM tx_isanblog_domain_model_author
+            INNER JOIN tx_isanblog_blogpost_author_mm ON tx_isanblog_domain_model_author.uid=tx_isanblog_blogpost_author_mm.uid_foreign
+            WHERE tx_isanblog_blogpost_author_mm.uid_local = '. $pid .'
+            AND tx_isanblog_domain_model_author.hidden = 0
+            AND tx_isanblog_domain_model_author.deleted = 0
+            GROUP BY tx_isanblog_domain_model_author.uid
+            ORDER BY tx_isanblog_blogpost_author_mm.sorting ASC
+        ');
+        return $query->execute();
+
+    }
+
 }
