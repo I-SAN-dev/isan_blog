@@ -18,7 +18,7 @@ namespace Isan\IsanBlog\ViewHelpers;
  *
  * = Examples =
  *
- * <code title="Return file categories">
+ * <code title="Return Blog Date">
  * <blog:date format="d.m.Y H:i" />
  * </code>
  * <output>
