@@ -33,5 +33,49 @@ namespace Isan\IsanBlog\Domain\Repository;
 class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
-    
+    /**
+     * Finds Blog Posts paginated
+     * @param int $page
+     * @param int $perPage
+     * @return mixed
+     */
+    public function findAllPaginated($page = 0, $perPage = 10)
+    {
+        $query = $this->createQuery();
+        $query->statement("
+            SELECT DISTINCT *
+            FROM pages
+        ");
+
+        return $query->execute();
+    }
+
+    /**
+     * Find by multiple categories, seperated string.
+     *
+     * @param string String containing category ids
+     * @return \Crea\CreaPersonsdir\Domain\Model\Person
+     */
+    public function findByCategories($uids) {
+        if(is_string($uids) && strlen($uids) > 0)
+        {
+            $query = $this->createQuery();
+            $query->statement("
+                SELECT DISTINCT *
+                FROM tx_creapersonsdir_domain_model_person
+                INNER JOIN sys_category_record_mm ON tx_creapersonsdir_domain_model_person.uid=sys_category_record_mm.uid_foreign
+                WHERE sys_category_record_mm.tablenames = 'tx_creapersonsdir_domain_model_person'
+                AND sys_category_record_mm.uid_local IN (".$uids.")
+                AND tx_creapersonsdir_domain_model_person.hidden = 0
+                AND tx_creapersonsdir_domain_model_person.deleted = 0
+                GROUP BY tx_creapersonsdir_domain_model_person.uid
+                ORDER BY tx_creapersonsdir_domain_model_person.sorting ASC
+            ");
+            return $query->execute();
+        }
+        else
+        {
+            return NULL;
+        }
+    }
 }

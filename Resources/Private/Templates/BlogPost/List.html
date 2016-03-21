@@ -17,25 +17,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages />
 
-<table  class="tx_isanblog" >
-	<tr>
-		<th><f:translate key="tx_isanblog_domain_model_blogpost.title" /></th>
-		<th><f:translate key="tx_isanblog_domain_model_blogpost.abstract" /></th>
-		<th><f:translate key="tx_isanblog_domain_model_blogpost.crdate" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
 
-	<f:for each="{blogPosts}" as="blogPost">
-		<tr>
-			<td><f:link.action action="show" arguments="{blogPost : blogPost}"> {blogPost.title}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{blogPost : blogPost}"> {blogPost.abstract}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{blogPost : blogPost}"> {blogPost.crdate -> f:format.date()}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{blogPost : blogPost}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{blogPost : blogPost}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
+<f:debug>{blogPosts}</f:debug>
 
-<f:link.action action="new">New BlogPost</f:link.action>
 </f:section>

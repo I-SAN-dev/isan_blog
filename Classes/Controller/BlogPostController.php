@@ -30,9 +30,8 @@ namespace Isan\IsanBlog\Controller;
 /**
  * BlogPostController
  */
-class Isan\IsanBlog\Controller\BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
     /**
      * blogPostRepository
      *
@@ -48,19 +47,7 @@ class Isan\IsanBlog\Controller\BlogPostController extends \TYPO3\CMS\Extbase\Mvc
      */
     public function listAction()
     {
-        $blogPosts = $this->blogPostRepository->findAll();
+        $blogPosts = $this->blogPostRepository->findAllPaginated();
         $this->view->assign('blogPosts', $blogPosts);
     }
-    
-    /**
-     * action show
-     *
-     * @param \Isan\IsanBlog\Domain\Model\BlogPost $blogPost
-     * @return void
-     */
-    public function showAction(\Isan\IsanBlog\Domain\Model\BlogPost $blogPost)
-    {
-        $this->view->assign('blogPost', $blogPost);
-    }
-
 }
