@@ -45,37 +45,16 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->statement("
             SELECT DISTINCT *
             FROM pages
+            WHERE pages.doktype = 116
+            AND pages.hidden = 0
+            AND pages.deleted = 0
+            AND pages.starttime < " . time() . "
+            ORDER BY
+              CASE WHEN pages.starttime = 0 THEN pages.crdate ELSE pages.starttime END DESC
+            LIMIT " . $perPage . "
+            OFFSET " . $page*$perPage . "
         ");
 
         return $query->execute();
-    }
-
-    /**
-     * Find by multiple categories, seperated string.
-     *
-     * @param string String containing category ids
-     * @return \Crea\CreaPersonsdir\Domain\Model\Person
-     */
-    public function findByCategories($uids) {
-        if(is_string($uids) && strlen($uids) > 0)
-        {
-            $query = $this->createQuery();
-            $query->statement("
-                SELECT DISTINCT *
-                FROM tx_creapersonsdir_domain_model_person
-                INNER JOIN sys_category_record_mm ON tx_creapersonsdir_domain_model_person.uid=sys_category_record_mm.uid_foreign
-                WHERE sys_category_record_mm.tablenames = 'tx_creapersonsdir_domain_model_person'
-                AND sys_category_record_mm.uid_local IN (".$uids.")
-                AND tx_creapersonsdir_domain_model_person.hidden = 0
-                AND tx_creapersonsdir_domain_model_person.deleted = 0
-                GROUP BY tx_creapersonsdir_domain_model_person.uid
-                ORDER BY tx_creapersonsdir_domain_model_person.sorting ASC
-            ");
-            return $query->execute();
-        }
-        else
-        {
-            return NULL;
-        }
     }
 }

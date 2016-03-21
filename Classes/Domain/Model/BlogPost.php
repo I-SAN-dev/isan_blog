@@ -32,6 +32,40 @@ namespace Isan\IsanBlog\Domain\Model;
  */
 class BlogPost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+    /**
+     * title
+     *
+     * @var string
+     */
+    protected $title = '';
+
+    /**
+     * subtitle
+     *
+     * @var string
+     */
+    protected $subtitle = '';
+
+    /**
+     * abstract
+     *
+     * @var string
+     */
+    protected $abstract = '';
+
+    /**
+     * crdate
+     *
+     * @var int
+     */
+    protected $crdate = 0;
+
+    /**
+     * starttime
+     *
+     * @var int
+     */
+    protected $starttime = 0;
 
     /**
      * author
@@ -76,7 +110,67 @@ class BlogPost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->author = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
-    
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @param string $subtitle
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAbstract()
+    {
+        return $this->abstract;
+    }
+
+    /**
+     * @param string $abstract
+     */
+    public function setAbstract($abstract)
+    {
+        $this->abstract = $abstract;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getDate()
+    {
+        if($this->starttime) {
+            return $this->starttime;
+        }
+        return $this->crdate;
+    }
+
     /**
      * Adds a Author
      *

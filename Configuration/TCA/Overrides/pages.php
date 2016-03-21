@@ -115,6 +115,15 @@ $tmp_isan_blog_columns = array(
 			),
 		),
 	),
+	'crdate'  => array (
+		'exclude' => 1,
+		'label' => 'Creation date',
+		'config' => Array (
+			'type' => 'none',
+			'format' => 'date',
+			'eval' => 'date',
+		)
+	)
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages',$tmp_isan_blog_columns);
