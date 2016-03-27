@@ -53,6 +53,10 @@ class RealUrlAutoConfiguration {
                                 'GETvar' => 'tx_isanblog_author[controller]',
                                 'noMatch' => 'bypass',
                             ),
+                            array(
+                                'GETvar' => 'tx_isanblog_blog[@widget_0][addQueryStringMethod]',
+                                'noMatch' => 'bypass'
+                            ),
                         ),
                         'author' => array(
                             array(
