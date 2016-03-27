@@ -64,8 +64,6 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         // attach images
         $fileRepository = $this->objectManager->get('TYPO3\CMS\Core\Resource\FileRepository');
         foreach ($results as &$result) {
-            //var_dump($result);
-
             $result->setImages($fileRepository->findByRelation('pages', 'media', $result->getUid()));
         }
 
