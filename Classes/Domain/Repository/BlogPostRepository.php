@@ -35,13 +35,11 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * Finds Blog Posts paginated
-     * @param int $page
-     * @param int $perPage
      * @param string $additionalWhere
      * @param string $additionalFrom
      * @return mixed
      */
-    public function findAllPaginated($page = 0, $perPage = 10, $additionalWhere = '', $additionalFrom = '')
+    public function findAllPaginated($additionalWhere = '', $additionalFrom = '')
     {
         $query = $this->createQuery();
         $query->statement("
@@ -55,8 +53,6 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             " . $additionalWhere . "
             ORDER BY
               CASE WHEN pages.starttime = 0 THEN pages.crdate ELSE pages.starttime END DESC
-            LIMIT " . $perPage . "
-            OFFSET " . $page*$perPage . "
         ");
 
         $results = $query->execute()->toArray();

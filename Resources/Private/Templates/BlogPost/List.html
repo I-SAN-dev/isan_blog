@@ -16,65 +16,67 @@
   <f:render partial="Author/Details" arguments="{author: byAuthor}" />
 </f:if>
 
+<f:widget.paginate objects="{blogPosts}" as="paginatedBlogPosts" configuration="{itemsPerPage: 1}">
 
+  <f:for each="{paginatedBlogPosts}" as="post">
 
-<f:for each="{blogPosts}" as="post">
+    <div class="blogPostTeaser">
 
-  <div class="blogPostTeaser">
+      <div class="row row-sm-flex">
+        <div class="col-sm-4">
+          <f:image src="{post.images.0.uid}" treatIdAsReference="true" class="img-responsive"/>
+        </div>
+        <div class="col-sm-8 col-flex">
+          <div class="content">
+            <h2>
+              <span class="title">{post.title}</span>
+              <f:if condition="{post.subtitle}">
+                <small class="subtitle">{post.subtitle}</small>
+              </f:if>
+            </h2>
+            <div class="abstract">
+              <f:format.nl2br>{post.abstract}</f:format.nl2br>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="authors">
+              <f:if condition="{post.author -> f:count()} > 1">
+                <f:then>
+                  Autoren:
+                </f:then>
+                <f:else>
+                  Autor:
+                </f:else>
+              </f:if>
 
-    <div class="row row-sm-flex">
-      <div class="col-sm-4">
-        <f:image src="{post.images.0.uid}" treatIdAsReference="true" class="img-responsive"/>
-      </div>
-      <div class="col-sm-8 col-flex">
-        <div class="content">
-          <h2>
-            <span class="title">{post.title}</span>
-            <f:if condition="{post.subtitle}">
-              <small class="subtitle">{post.subtitle}</small>
-            </f:if>
-          </h2>
-          <div class="abstract">
-            <f:format.nl2br>{post.abstract}</f:format.nl2br>
+              <f:for each="{post.author}" as="author" iteration="i">
+                <f:link.action arguments="{author: author}" class="author">
+                  <f:image src="{author.image.uid}" treatIdAsReference="1" width="32px" height="32px" class="img-responsive" />{author.name}
+                </f:link.action>
+
+              </f:for>
+            </div>
+
           </div>
         </div>
-        <div class="footer">
-          <div class="authors">
-            <f:if condition="{post.author -> f:count()} > 1">
-              <f:then>
-                Autoren:
-              </f:then>
-              <f:else>
-                Autor:
-              </f:else>
-            </f:if>
+      </div>
 
-            <f:for each="{post.author}" as="author" iteration="i">
-              <f:link.action arguments="{author: author}" class="author">
-                <f:image src="{author.image.uid}" treatIdAsReference="1" width="32px" height="32px" class="img-responsive" />{author.name}
-              </f:link.action>
-
-            </f:for>
-          </div>
-
+      <div class="date">
+        <div class="day">
+          <f:format.date format="%d">{post.date}</f:format.date>
+        </div>
+        <div class="month">
+          <f:format.date format="%b">{post.date}</f:format.date>
+        </div>
+        <div class="year">
+          <f:format.date format="%Y">{post.date}</f:format.date>
         </div>
       </div>
+
     </div>
 
-    <div class="date">
-      <div class="day">
-        <f:format.date format="%d">{post.date}</f:format.date>
-      </div>
-      <div class="month">
-        <f:format.date format="%b">{post.date}</f:format.date>
-      </div>
-      <div class="year">
-        <f:format.date format="%Y">{post.date}</f:format.date>
-      </div>
-    </div>
+  </f:for>
 
-  </div>
-
-</f:for>
+</f:widget.paginate>
 
 </f:section>
