@@ -5,6 +5,19 @@
 
 <f:debug>{_all}</f:debug>
 
+<h1 class="blogHeading">
+  Blogbeiträge
+  <f:if condition="{byAuthor}">
+    von {byAuthor.name}
+  </f:if>
+</h1>
+
+<f:if condition="{byAuthor}">
+  <f:render partial="Author/Details" arguments="{author: byAuthor}" />
+</f:if>
+
+
+
 <f:for each="{blogPosts}" as="post">
 
   <div class="blogPostTeaser">
@@ -37,7 +50,7 @@
             </f:if>
 
             <f:for each="{post.author}" as="author" iteration="i">
-              <f:link.action action="list" arguments="{author: author}" class="author">
+              <f:link.action arguments="{author: author}" class="author">
                 <f:image src="{author.image.uid}" treatIdAsReference="1" width="32px" height="32px" class="img-responsive" />{author.name}
               </f:link.action>
 

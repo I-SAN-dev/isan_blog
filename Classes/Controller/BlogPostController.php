@@ -43,10 +43,13 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action list
      *
+     * @param \Isan\IsanBlog\Domain\Model\Author $author
      * @return void
      */
-    public function listAction()
+    public function listAction(\Isan\IsanBlog\Domain\Model\Author $author = NULL)
     {
+        $this->view->assign('byAuthor', $author);
+
         $blogPosts = $this->blogPostRepository->findAllPaginated();
         $this->view->assign('blogPosts', $blogPosts);
     }
