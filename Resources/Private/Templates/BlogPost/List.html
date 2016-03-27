@@ -16,7 +16,7 @@
   <f:render partial="Author/Details" arguments="{author: byAuthor}" />
 </f:if>
 
-<f:widget.paginate objects="{blogPosts}" as="paginatedBlogPosts" configuration="{itemsPerPage: 1}">
+<f:widget.paginate objects="{blogPosts}" as="paginatedBlogPosts" configuration="{itemsPerPage: 1, insertAbove: 1}">
 
   <f:for each="{paginatedBlogPosts}" as="post">
 
