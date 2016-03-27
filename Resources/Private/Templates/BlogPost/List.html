@@ -8,7 +8,23 @@
 <f:debug>{blogPosts}</f:debug>
 
   <f:for each="{blogPosts}" as="post">
+
+    <div class="blogPostTeaser">
+      <div class="row">
+        <div class="col-sm-4">
+          <f:image src="{post.images.0.uid}" treatIdAsReference="true" class="img-responsive"/>
+        </div>
+        <div class="col-sm-8">
+          <h2>
+            {post.title}
+            <small class="subtitle">{post.subtitle}</small>
+          </h2>
+        </div>
+      </div>
+    </div>
+
     <f:format.date>{post.date}</f:format.date>
+
   </f:for>
 
 </f:section>

@@ -33,6 +33,13 @@ namespace Isan\IsanBlog\Domain\Model;
 class BlogPost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
+     * uid
+     *
+     * @var int
+     */
+    protected $uid = 0;
+
+    /**
      * title
      *
      * @var string
@@ -87,6 +94,13 @@ class BlogPost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var	\TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
      */
     protected $categories = null;
+
+    /**
+     * images
+     *
+     * @var array
+     */
+    protected $images = NULL;
     
     /**
      * __construct
@@ -109,6 +123,22 @@ class BlogPost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->author = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * @return int
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * @param int $uid
+     */
+    public function setUid($uid)
+    {
+        $this->uid = $uid;
     }
 
     /**
@@ -307,4 +337,24 @@ class BlogPost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->categories = $categories;
     }
 
+    /**
+     * Returns the images
+     *
+     * @return array
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Sets the images
+     *
+     * @param array $images
+     * @return void
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
 }

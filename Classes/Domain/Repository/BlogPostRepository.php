@@ -37,24 +37,38 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * Finds Blog Posts paginated
      * @param int $page
      * @param int $perPage
+     * @param string $additionalWhere
+     * @param string $additionalFrom
      * @return mixed
      */
-    public function findAllPaginated($page = 0, $perPage = 10)
+    public function findAllPaginated($page = 0, $perPage = 10, $additionalWhere = '', $additionalFrom = '')
     {
         $query = $this->createQuery();
         $query->statement("
             SELECT DISTINCT *
-            FROM pages
+            FROM pages " . $additionalFrom . "
             WHERE pages.doktype = 116
             AND pages.hidden = 0
             AND pages.deleted = 0
             AND pages.starttime < " . time() . "
+            AND (pages.endtime = 0 OR pages.endtime > " . time() . ")
+            " . $additionalWhere . "
             ORDER BY
               CASE WHEN pages.starttime = 0 THEN pages.crdate ELSE pages.starttime END DESC
             LIMIT " . $perPage . "
             OFFSET " . $page*$perPage . "
         ");
 
-        return $query->execute();
+        $results = $query->execute()->toArray();
+
+        // attach images
+        $fileRepository = $this->objectManager->get('TYPO3\CMS\Core\Resource\FileRepository');
+        foreach ($results as &$result) {
+            //var_dump($result);
+
+            $result->setImages($fileRepository->findByRelation('pages', 'media', $result->getUid()));
+        }
+
+        return $results;
     }
 }
