@@ -69,6 +69,11 @@ class RealUrlAutoConfiguration {
                                 ),
                             ),
                         ),
+                        'page' => array(
+                            array(
+                                'GETvar' => 'tx_isanblog_blog[@widget_0][currentPage]',
+                            ),
+                        ),
                     )
                 )
             )
