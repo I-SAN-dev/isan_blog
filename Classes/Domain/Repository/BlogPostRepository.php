@@ -89,6 +89,16 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ";
         }
 
+        // Only show special tag
+        if($tag) {
+            $from = $from . "
+                INNER JOIN tx_isanblog_blogpost_tag_mm ON pages.uid=tx_isanblog_blogpost_tag_mm.uid_local
+            ";
+            $where = $where . "
+                AND tx_isanblog_blogpost_tag_mm.uid_foreign = " . $tag->getUid() . "
+            ";
+        }
+
         return $this->findAll($where, $from);
     }
 }

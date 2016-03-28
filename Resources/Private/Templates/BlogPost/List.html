@@ -10,6 +10,9 @@
   <f:if condition="{byAuthor}">
     von {byAuthor.name}
   </f:if>
+  <f:if condition="{byTag}">
+    mit dem Tag {byTag.name}
+  </f:if>
 </h1>
 
 <f:if condition="{byAuthor}">
@@ -37,6 +40,13 @@
             <div class="abstract">
               <f:format.nl2br>{post.abstract}</f:format.nl2br>
             </div>
+            <div class="tags small text-muted">
+              <f:for each="{post.tags}" as="tag">
+                <f:link.action arguments="{author: byAuthor, tag: tag}" class="tag">
+                  {tag.name}
+                </f:link.action>
+              </f:for>
+            </div>
           </div>
           <div class="footer">
             <div class="authors">
@@ -50,7 +60,7 @@
               </f:if>
 
               <f:for each="{post.author}" as="author" iteration="i">
-                <f:link.action arguments="{author: author}" class="author">
+                <f:link.action arguments="{author: author, tag: byTag}" class="author">
                   <f:image src="{author.image.uid}" treatIdAsReference="1" width="32px" height="32px" class="img-responsive" />{author.name}
                 </f:link.action>
 

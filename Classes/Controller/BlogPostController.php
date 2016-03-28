@@ -44,13 +44,15 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * action list
      *
      * @param \Isan\IsanBlog\Domain\Model\Author $author
+     * @param \Isan\IsanBlog\Domain\Model\Tag $tag
      * @return void
      */
-    public function listAction(\Isan\IsanBlog\Domain\Model\Author $author = NULL)
+    public function listAction(\Isan\IsanBlog\Domain\Model\Author $author = NULL, \Isan\IsanBlog\Domain\Model\Tag $tag = NULL)
     {
         $this->view->assign('byAuthor', $author);
+        $this->view->assign('byTag', $tag);
 
-        $blogPosts = $this->blogPostRepository->findAllFiltered($author);
+        $blogPosts = $this->blogPostRepository->findAllFiltered($author, $tag);
         $this->view->assign('blogPosts', $blogPosts);
     }
 }
