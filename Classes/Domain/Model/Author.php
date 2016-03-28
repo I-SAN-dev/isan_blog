@@ -32,6 +32,12 @@ namespace Isan\IsanBlog\Domain\Model;
  */
 class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+    /**
+     * uid
+     *
+     * @var int
+     */
+    protected $uid = 0;
 
     /**
      * mail
@@ -83,7 +89,23 @@ class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     protected $image = null;
-    
+
+    /**
+     * @return int
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * @param int $uid
+     */
+    public function setUid($uid)
+    {
+        $this->uid = $uid;
+    }
+
     /**
      * Returns the name
      *

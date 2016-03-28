@@ -50,7 +50,7 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         $this->view->assign('byAuthor', $author);
 
-        $blogPosts = $this->blogPostRepository->findAllPaginated();
+        $blogPosts = $this->blogPostRepository->findAllFiltered($author);
         $this->view->assign('blogPosts', $blogPosts);
     }
 }

@@ -34,12 +34,12 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
     /**
-     * Finds Blog Posts paginated
+     * Finds Blog Posts
      * @param string $additionalWhere
      * @param string $additionalFrom
      * @return mixed
      */
-    public function findAllPaginated($additionalWhere = '', $additionalFrom = '')
+    public function findAll($additionalWhere = '', $additionalFrom = '')
     {
         $query = $this->createQuery();
         $query->statement("
@@ -51,6 +51,7 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             AND pages.starttime < " . time() . "
             AND (pages.endtime = 0 OR pages.endtime > " . time() . ")
             " . $additionalWhere . "
+            GROUP BY pages.uid
             ORDER BY
               CASE WHEN pages.starttime = 0 THEN pages.crdate ELSE pages.starttime END DESC
         ");
@@ -64,5 +65,30 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         }
 
         return $results;
+    }
+
+    /**
+     * Finds BlogPosts filtered
+     * @param \Isan\IsanBlog\Domain\Model\Author $author
+     * @param \Isan\IsanBlog\Domain\Model\Tag $tag
+     * @param \TYPO3\CMS\Extbase\Domain\Model\Category
+     * @return mixed
+     */
+    public function findAllFiltered($author = NULL, $tag = NULL, $category = NULL)
+    {
+        $from = "";
+        $where = "";
+
+        // Only show special author
+        if($author) {
+            $from = $from . "
+                INNER JOIN tx_isanblog_blogpost_author_mm ON pages.uid=tx_isanblog_blogpost_author_mm.uid_local
+            ";
+            $where = $where . "
+                AND tx_isanblog_blogpost_author_mm.uid_foreign = " . $author->getUid() . "
+            ";
+        }
+
+        return $this->findAll($where, $from);
     }
 }
