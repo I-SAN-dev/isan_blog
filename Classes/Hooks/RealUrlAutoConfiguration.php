@@ -73,6 +73,36 @@ class RealUrlAutoConfiguration {
                                 ),
                             ),
                         ),
+                        'tag' => array(
+                            array(
+                                'GETvar' => 'tx_isanblog_blog[tag]',
+                                'lookUpTable' => array(
+                                    'table' => 'tx_isanblog_domain_model_tag',
+                                    'id_field' => 'uid',
+                                    'alias_field' => "name",
+                                    'useUniqueCache' => 1,
+                                    'useUniqueCache_conf' => array(
+                                        'strtolower' => 1,
+                                        'spaceCharacter' => '-',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'category' => array(
+                            array(
+                                'GETvar' => 'tx_isanblog_blog[cat]',
+                                'lookUpTable' => array(
+                                    'table' => 'sys_category',
+                                    'id_field' => 'uid',
+                                    'alias_field' => "title",
+                                    'useUniqueCache' => 1,
+                                    'useUniqueCache_conf' => array(
+                                        'strtolower' => 1,
+                                        'spaceCharacter' => '-',
+                                    ),
+                                ),
+                            ),
+                        ),
                         'page' => array(
                             array(
                                 'GETvar' => 'tx_isanblog_blog[@widget_0][currentPage]',

@@ -32,14 +32,6 @@ namespace Isan\IsanBlog\Domain\Model;
  */
 class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
-    /**
-     * uid
-     *
-     * @var int
-     */
-    protected $uid = 0;
-
     /**
      * name
      *
@@ -47,22 +39,6 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @validate NotEmpty
      */
     protected $name = '';
-
-    /**
-     * @return int
-     */
-    public function getUid()
-    {
-        return $this->uid;
-    }
-
-    /**
-     * @param int $uid
-     */
-    public function setUid($uid)
-    {
-        $this->uid = $uid;
-    }
 
     /**
      * Returns the name
