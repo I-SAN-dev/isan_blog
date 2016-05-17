@@ -54,7 +54,7 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->view->assign('byTag', $tag);
         $this->view->assign('byCategory', $cat);
 
-        $blogPosts = $this->blogPostRepository->findAllFiltered($author, $tag, $cat);
+        $blogPosts = $this->blogPostRepository->findAllFiltered($author, $tag, $cat, $this->settings['limit']);
         $this->view->assign('blogPosts', $blogPosts);
     }
 }

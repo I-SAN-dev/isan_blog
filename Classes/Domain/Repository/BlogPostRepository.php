@@ -37,10 +37,13 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * Finds Blog Posts
      * @param string $additionalWhere
      * @param string $additionalFrom
+     * @param int $limit
      * @return mixed
      */
-    public function findAll($additionalWhere = '', $additionalFrom = '')
+    public function findAll($additionalWhere = '', $additionalFrom = '', $limit = 0)
     {
+        $limit = $limit > 0 ? 'LIMIT ' . intval($limit) : '';
+
         $query = $this->createQuery();
         $query->statement("
             SELECT DISTINCT *
@@ -54,6 +57,7 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             GROUP BY pages.uid
             ORDER BY
               CASE WHEN pages.starttime = 0 THEN pages.crdate ELSE pages.starttime END DESC
+            " . $limit . "
         ");
 
         $results = $query->execute()->toArray();
@@ -72,9 +76,10 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param \Isan\IsanBlog\Domain\Model\Author $author
      * @param \Isan\IsanBlog\Domain\Model\Tag $tag
      * @param \TYPO3\CMS\Extbase\Domain\Model\Category
+     * @param int $limit
      * @return mixed
      */
-    public function findAllFiltered($author = NULL, $tag = NULL, $category = NULL)
+    public function findAllFiltered($author = NULL, $tag = NULL, $category = NULL, $limit = 0)
     {
         $from = "";
         $where = "";
@@ -110,6 +115,6 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ";
         }
 
-        return $this->findAll($where, $from);
+        return $this->findAll($where, $from, $limit);
     }
 }
