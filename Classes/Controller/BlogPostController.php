@@ -50,6 +50,17 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function listAction(\Isan\IsanBlog\Domain\Model\Author $author = NULL, \Isan\IsanBlog\Domain\Model\Tag $tag = NULL, \TYPO3\CMS\Extbase\Domain\Model\Category $cat = NULL)
     {
+        // Warn if their are options that may lead to bad behaviour
+        if (($this->settings['listpage'] == '' || $this->settings['listpage'] == $GLOBALS['TSFE']->id)
+            && $this->settings['source'] != 'all') {
+
+            $this->addFlashMessage(
+                'You have pre-filtered the posts to display, but do not supply a list-page to view them all where a user can be led who changes filters on his own.
+                You should either show all blog-posts or supply the id of a page for a listview where this condition is met.',
+                'Possible malconfiguration',
+                $severity = \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        }
+
         if ($this->settings['source'] === 'category') {
             // Display by categories
             $blogPosts = $this->blogPostRepository->findByCategories($this->settings['categoriesList'], $this->settings['limit']);
