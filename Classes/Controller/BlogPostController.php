@@ -59,7 +59,8 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             $blogPosts = $this->blogPostRepository->findByTags($this->settings['tagList'], $this->settings['limit']);
         }
         else if ($this->settings['source'] === 'author') {
-            // TODO display by author
+            // Display by authors
+            $blogPosts = $this->blogPostRepository->findByAuthors($this->settings['authorList'], $this->settings['limit']);
         }
         else {
             // Default user-filterable list

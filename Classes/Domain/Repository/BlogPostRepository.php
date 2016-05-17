@@ -146,4 +146,18 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         return $this->findAll($where, $from ,$limit);
     }
+
+    /**
+     * Returns all blog posts that are written by given authors
+     * @param string $authors
+     * @param int $limit
+     * @return mixed
+     */
+    public function findByAuthors($authors, $limit = 0)
+    {
+        $from =     "INNER JOIN tx_isanblog_blogpost_author_mm ON pages.uid=tx_isanblog_blogpost_author_mm.uid_local";
+        $where =    "AND tx_isanblog_blogpost_author_mm.uid_foreign IN (" . $authors . ")";
+
+        return $this->findAll($where, $from ,$limit);
+    }
 }
