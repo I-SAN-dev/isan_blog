@@ -132,4 +132,18 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         return $this->findAll($where, $from ,$limit);
     }
+
+    /**
+     * Returns all blog posts that are tagged with given tags
+     * @param string $tags
+     * @param int $limit
+     * @return mixed
+     */
+    public function findByTags($tags, $limit = 0)
+    {
+        $from =     "INNER JOIN tx_isanblog_blogpost_tag_mm ON pages.uid=tx_isanblog_blogpost_tag_mm.uid_local";
+        $where =    "AND tx_isanblog_blogpost_tag_mm.uid_foreign IN (" . $tags . ")";
+
+        return $this->findAll($where, $from ,$limit);
+    }
 }

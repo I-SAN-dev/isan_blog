@@ -51,10 +51,12 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function listAction(\Isan\IsanBlog\Domain\Model\Author $author = NULL, \Isan\IsanBlog\Domain\Model\Tag $tag = NULL, \TYPO3\CMS\Extbase\Domain\Model\Category $cat = NULL)
     {
         if ($this->settings['source'] === 'category') {
+            // Display by categories
             $blogPosts = $this->blogPostRepository->findByCategories($this->settings['categoriesList'], $this->settings['limit']);
         }
         else if ($this->settings['source'] === 'tag') {
-            // TODO display by tag
+            // Display by tags
+            $blogPosts = $this->blogPostRepository->findByTags($this->settings['tagList'], $this->settings['limit']);
         }
         else if ($this->settings['source'] === 'author') {
             // TODO display by author
