@@ -17,13 +17,13 @@
 				</div>
 				<div class="tags small text-muted">
 					<f:for each="{post.tags}" as="tag">
-						<f:link.action arguments="{author: byAuthor, cat: byCategory, tag: tag}" class="tag">
+						<f:link.action pageUid="{settings.listpage}" arguments="{author: byAuthor, cat: byCategory, tag: tag}" class="tag">
 							{tag.name}
 						</f:link.action>
 					</f:for>
 
 					<f:for each="{post.categories}" as="category">
-						<f:link.action arguments="{author: byAuthor, cat: category, tag: byTag}" class="category">
+						<f:link.action pageUid="{settings.listpage}" arguments="{author: byAuthor, cat: category, tag: byTag}" class="category">
 							{category.title}
 						</f:link.action>
 					</f:for>
@@ -41,7 +41,7 @@
 					</f:if>
 
 					<f:for each="{post.author}" as="author" iteration="i">
-						<f:link.action arguments="{author: author, cat: byCategory, tag: byTag}" class="author">
+						<f:link.action pageUid="{settings.listpage}" arguments="{author: author, cat: byCategory, tag: byTag}" class="author">
 							<f:image src="{author.image.uid}" treatIdAsReference="1" width="32px" height="32px" class="img-responsive" />{author.name}
 						</f:link.action>
 
