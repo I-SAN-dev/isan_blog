@@ -6,12 +6,14 @@
 		</div>
 		<div class="col-sm-8 col-flex">
 			<div class="content">
-				<h2>
-					<span class="title">{post.title}</span>
-					<f:if condition="{post.subtitle}">
-						<small class="subtitle">{post.subtitle}</small>
-					</f:if>
-				</h2>
+				<f:link.page pageUid="{post.uid}">
+					<h2>
+						<span class="title">{post.title}</span>
+						<f:if condition="{post.subtitle}">
+							<small class="subtitle">{post.subtitle}</small>
+						</f:if>
+					</h2>
+				</f:link.page>
 				<div class="abstract">
 					<f:format.nl2br>{post.abstract}</f:format.nl2br>
 				</div>
