@@ -3,8 +3,6 @@
 
 <f:flashMessages />
 
-<f:debug>{_all}</f:debug>
-
 <h1 class="blogHeading">
   Blogbeiträge
   <f:if condition="{byAuthor}">
@@ -22,7 +20,7 @@
   <f:render partial="Author/Details" arguments="{author: byAuthor}" />
 </f:if>
 
-<f:widget.paginate objects="{blogPosts}" as="paginatedBlogPosts" configuration="{itemsPerPage: 1, insertAbove: 1, addQueryStringMethod: 'GET'}">
+<f:widget.paginate objects="{blogPosts}" as="paginatedBlogPosts" configuration="{itemsPerPage: 10, insertAbove: 0, addQueryStringMethod: 'GET'}">
 
   <f:for each="{paginatedBlogPosts}" as="post">
 
