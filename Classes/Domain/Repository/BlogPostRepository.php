@@ -117,4 +117,19 @@ class BlogPostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         return $this->findAll($where, $from, $limit);
     }
+
+    /**
+     * Returns all blog posts that belong to one of the given categories
+     * @param string $categories
+     * @param int $limit
+     * @return mixed
+     */
+    public function findByCategories($categories, $limit = 0)
+    {
+        $from =     "INNER JOIN sys_category_record_mm ON pages.uid=sys_category_record_mm.uid_foreign";
+        $where =    "AND sys_category_record_mm.tablenames = 'pages'
+                     AND sys_category_record_mm.uid_local IN (" . $categories . ")";
+
+        return $this->findAll($where, $from ,$limit);
+    }
 }

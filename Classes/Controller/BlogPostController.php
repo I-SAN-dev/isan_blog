@@ -50,11 +50,24 @@ class BlogPostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function listAction(\Isan\IsanBlog\Domain\Model\Author $author = NULL, \Isan\IsanBlog\Domain\Model\Tag $tag = NULL, \TYPO3\CMS\Extbase\Domain\Model\Category $cat = NULL)
     {
-        $this->view->assign('byAuthor', $author);
-        $this->view->assign('byTag', $tag);
-        $this->view->assign('byCategory', $cat);
+        if ($this->settings['source'] === 'category') {
+            $blogPosts = $this->blogPostRepository->findByCategories($this->settings['categoriesList'], $this->settings['limit']);
+        }
+        else if ($this->settings['source'] === 'tag') {
+            // TODO display by tag
+        }
+        else if ($this->settings['source'] === 'author') {
+            // TODO display by author
+        }
+        else {
+            // Default user-filterable list
+            $this->view->assign('byAuthor', $author);
+            $this->view->assign('byTag', $tag);
+            $this->view->assign('byCategory', $cat);
 
-        $blogPosts = $this->blogPostRepository->findAllFiltered($author, $tag, $cat, $this->settings['limit']);
+            $blogPosts = $this->blogPostRepository->findAllFiltered($author, $tag, $cat, $this->settings['limit']);
+        }
         $this->view->assign('blogPosts', $blogPosts);
+
     }
 }
