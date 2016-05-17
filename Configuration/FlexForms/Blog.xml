@@ -1,0 +1,158 @@
+<T3DataStructure>
+    <meta type="array">
+        <langChildren>0</langChildren>
+        <langDisable>1</langDisable>
+    </meta>
+    <ROOT>
+        <type>array</type>
+        <el>
+
+            <settings.limit>
+                <TCEforms>
+                    <label>Limit (max. amount of posts to display, 0 = all)</label>
+                    <config>
+                        <type>input</type>
+                        <size>4</size>
+                        <max>4</max>
+                        <eval>trim, int</eval>
+                    </config>
+                </TCEforms>
+            </settings.limit>
+
+            <settings.listpage>
+                <TCEforms>
+                    <label>Page for listview</label>
+                    <config>
+                        <type>group</type>
+                        <internal_type>db</internal_type>
+                        <allowed>pages</allowed>
+                        <size>1</size>
+                        <maxitems>1</maxitems>
+                        <minitems>0</minitems>
+                        <show_thumbs>0</show_thumbs>
+                        <wizards>
+                            <suggest>
+                                <type>suggest</type>
+                                <default>
+                                    <searchCondition>doktype = 1</searchCondition>
+                                </default>
+                            </suggest>
+                        </wizards>
+                    </config>
+                </TCEforms>
+            </settings.listpage>
+
+            <settings.source>
+                <TCEforms>
+                    <label>Show</label>
+                    <onChange>reload</onChange>
+                    <config>
+                        <type>select</type>
+                        <items type="array">
+                            <numIndex index="0" type="array">
+                                <numIndex index="0">all</numIndex>
+                                <numIndex index="1">all</numIndex>
+                            </numIndex>
+                            <numIndex index="1" type="array">
+                                <numIndex index="0">by category</numIndex>
+                                <numIndex index="1">category</numIndex>
+                            </numIndex>
+                            <numIndex index="2" type="array">
+                                <numIndex index="0">by tag</numIndex>
+                                <numIndex index="1">tag</numIndex>
+                            </numIndex>
+                            <numIndex index="3" type="array">
+                                <numIndex index="0">by author</numIndex>
+                                <numIndex index="1">author</numIndex>
+                            </numIndex>
+                            <numIndex index="4" type="array">
+                                <numIndex index="0">by selection</numIndex>
+                                <numIndex index="1">select</numIndex>
+                            </numIndex>
+                        </items>
+                        <maxitems>1</maxitems>
+                        <size>1</size>
+                    </config>
+                </TCEforms>
+            </settings.source>
+
+            <settings.categoriesList>
+                <TCEforms>
+                    <exclude>1</exclude>
+                    <displayCond>FIELD:settings.source:=:category</displayCond>
+                    <config>
+                        <type>select</type>
+                        <autoSizeMax>50</autoSizeMax>
+                        <foreign_table>sys_category</foreign_table>
+                        <foreign_table_where> AND sys_category.sys_language_uid IN (-1, 0) ORDER BY sys_category.sorting ASC</foreign_table_where>
+                        <maxitems>9999</maxitems>
+                        <renderMode>tree</renderMode>
+                        <size>10</size>
+                        <treeConfig>
+                            <appearance>
+                                <expandAll>1</expandAll>
+                                <showHeader>1</showHeader>
+                            </appearance>
+                            <parentField>parent</parentField>
+                        </treeConfig>
+                    </config>
+                </TCEforms>
+            </settings.categoriesList>
+
+            <settings.tagList>
+                <TCEforms>
+                    <exclude>1</exclude>
+                    <displayCond>FIELD:settings.source:=:tag</displayCond>
+                    <config>
+                        <type>select</type>
+                        <autoSizeMax>50</autoSizeMax>
+                        <foreign_table>tx_isanblog_domain_model_tag</foreign_table>
+                        <maxitems>9999</maxitems>
+                        <size>10</size>
+                    </config>
+                </TCEforms>
+            </settings.tagList>
+
+            <settings.authorList>
+                <TCEforms>
+                    <exclude>1</exclude>
+                    <displayCond>FIELD:settings.source:=:author</displayCond>
+                    <config>
+                        <type>select</type>
+                        <autoSizeMax>50</autoSizeMax>
+                        <foreign_table>tx_isanblog_domain_model_author</foreign_table>
+                        <maxitems>9999</maxitems>
+                        <size>10</size>
+                    </config>
+                </TCEforms>
+            </settings.authorList>
+
+            <settings.selectedList>
+                <TCEforms>
+                    <exclude>1</exclude>
+                    <displayCond>FIELD:settings.source:=:select</displayCond>
+                    <config>
+                        <type>select</type>
+                        <autoSizeMax>50</autoSizeMax>
+                        <foreign_table>pages</foreign_table>
+                        <foreign_table_where> AND pages.doktype = 116</foreign_table_where>
+                        <maxitems>9999</maxitems>
+                        <size>10</size>
+                        <renderType>selectMultipleSideBySide</renderType>
+                        <wizards>
+                            <suggest>
+                                <type>suggest</type>
+                                <default>
+                                    <searchCondition>doktype = 116</searchCondition>
+                                </default>
+                            </suggest>
+                        </wizards>
+
+                    </config>
+                </TCEforms>
+            </settings.selectedList>
+
+
+        </el>
+    </ROOT>
+</T3DataStructure>
