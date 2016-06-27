@@ -27,7 +27,10 @@ namespace Isan\IsanBlog\ViewHelpers;
  *
  *
  */
-class DateViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\DateViewHelper
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Fluid\ViewHelpers\Format\DateViewHelper as T3DateViewHelper;
+
+class DateViewHelper extends AbstractViewHelper
 {
     /**
      * Returns the blog date/time
@@ -45,6 +48,14 @@ class DateViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\DateViewHelper
             $time = $starttime;
         }
 
-        return parent::render($time, $format);
+        return T3DateViewHelper::renderStatic(
+            array(
+                'date' => $time,
+                'format' => $format,
+                'base' => NULL
+            ),
+            $this->buildRenderChildrenClosure(),
+            $this->renderingContext
+        );
     }
 }
