@@ -12,6 +12,10 @@ plugin.tx_isanblog_blog {
 		# cat=plugin.tx_isanblog_blog//a; type=string; label=Default storage PID
 		storagePid = 8
 	}
+	settings {
+		# cat=plugin.tx_isanblog_blog//a; type=string; label=Default listpage PID
+		listpage = 0
+	}
 }
 
 plugin.tx_isanblog_author {
