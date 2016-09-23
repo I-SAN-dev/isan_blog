@@ -3,18 +3,20 @@
 
 <f:flashMessages />
 
-<h1 class="blogHeading">
-  Blogbeiträge
-  <f:if condition="{byAuthor}">
-    von {byAuthor.name}
-  </f:if>
-  <f:if condition="{byCategory}">
-    aus der Kategorie {byCategory.title}
-  </f:if>
-  <f:if condition="{byTag}">
-    mit dem Tag {byTag.name}
-  </f:if>
-</h1>
+<f:if condition="{settings.showheadline}">
+  <h1 class="blogHeading">
+    Blogbeiträge
+    <f:if condition="{byAuthor}">
+      von {byAuthor.name}
+    </f:if>
+    <f:if condition="{byCategory}">
+      aus der Kategorie {byCategory.title}
+    </f:if>
+    <f:if condition="{byTag}">
+      mit dem Tag {byTag.name}
+    </f:if>
+  </h1>
+</f:if>
 
 <f:if condition="{byAuthor}">
   <f:render partial="Author/Details" arguments="{author: byAuthor}" />

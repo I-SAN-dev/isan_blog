@@ -7,6 +7,15 @@
         <type>array</type>
         <el>
 
+            <settings.showheadline>
+                <TCEforms>
+                    <label>Show Headline</label>
+                    <config>
+                        <type>check</type>
+                    </config>
+                </TCEforms>
+            </settings.showheadline>
+
             <settings.limit>
                 <TCEforms>
                     <label>Limit (max. amount of posts to display, 0 = all)</label>
