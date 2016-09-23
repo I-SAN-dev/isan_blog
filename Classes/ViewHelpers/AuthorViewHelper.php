@@ -29,6 +29,10 @@ namespace Isan\IsanBlog\ViewHelpers;
  *
  *
  */
+use Isan\IsanBlog\Domain\Model\Author;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Metaseo\Metaseo\Connector;
+
 class AuthorViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
@@ -45,6 +49,26 @@ class AuthorViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
      */
     public function render()
     {
-        return $this->authorRepository->findByPage($GLOBALS['TSFE']->id)->toArray();
+        $authors = $this->authorRepository->findByPage($GLOBALS['TSFE']->id)->toArray();
+
+        // meta tag integration with metaseo
+        if (class_exists('Metaseo\Metaseo\Connector')) {
+            try {
+                if (count($authors) > 0) {
+                    /** @var Connector $metaseoConnector */
+                    $metaseoConnector = GeneralUtility::makeInstance(Connector::class);
+                    $names = [];
+                    /** @var Author $author */
+                    foreach ($authors as $author) {
+                        $names[] = $author->getName();
+                    }
+                    $metaseoConnector->setMetaTag('author', implode($names, ', '));
+                }
+            } catch (\Exception $e) {
+                // Bad style, but this happens if some third party thingy is messed up. We don't care.
+            }
+        }
+
+        return $authors;
     }
 }
