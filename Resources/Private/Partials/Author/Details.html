@@ -14,4 +14,29 @@
 			</div>
 		</div>
 	</div>
+	<div class="links">
+		<f:if condition="{author.mail}">
+			<f:link.email email="{author.mail}" title="Mail">
+				<span class="fa fa-envelope"></span>
+			</f:link.email>
+		</f:if>
+
+		<f:if condition="{author.link}">
+			<f:link.external uri="{author.link}" target="_blank" title="Website">
+				<span class="fa fa-link"></span>
+			</f:link.external>
+		</f:if>
+
+		<f:if condition="{author.googlepluslink}">
+			<f:link.external uri="{author.googlepluslink}" target="_blank" title="Google+">
+				<span class="fa fa-google-plus"></span>
+			</f:link.external>
+		</f:if>
+
+		<f:if condition="{author.facebooklink}">
+			<f:link.external uri="{author.facebooklink}" target="_blank" title="Facebook">
+				<span class="fa fa-facebook"></span>
+			</f:link.external>
+		</f:if>
+	</div>
 </div>
